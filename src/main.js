@@ -15,7 +15,13 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 
 router.beforeEach((to, from, next) => {
+  console.info('拦截器进入')
+  console.info(window.localStorage.getItem('user'))
+  console.info(to.meta.requireAuth)
   if (to.meta.requireAuth) {
+    console.info(to)
+    console.info(from)
+    console.info(next)
     if (store.state.user.username) {
       next()
     } else {
