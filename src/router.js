@@ -7,7 +7,6 @@ import Login from './components/Login'
 import Home from './components/Home'
 import LibraryIndex from "@/components/library/LibraryIndex";
 import Register from "@/components/Register";
-
 Vue.use(Router)
 
 export default new Router({
@@ -43,6 +42,16 @@ export default new Router({
             meta: {
               requireAuth: true
             }
+          },
+
+          {
+            path: '/admin',
+            name: 'AdminIndex',
+            component: ()=> import('./components/admin/AdminIndex'),
+            children: [
+
+            ]
+
           }
         ]
       }

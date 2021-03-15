@@ -15,23 +15,56 @@ Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
+const formatRoutes = (routes) => {
+  let fmtRoutes = []
+  routes.forEach(route => {
+    if (route.children) {
+      route.children = formatRoutes(route.children)
+    }
+
+    let fmtRoute = {
+      path: route.path,
+      component: resolve => {
+        require(['./components/admin/' + route.component + '.vue'], resolve)
+      },
+      name: route.name,
+      nameZh: route.nameZh,
+      iconCls: route.iconCls,
+      children: route.children
+    }
+    fmtRoutes.push(fmtRoute)
+  })
+  return fmtRoutes
+}
+const initAdminMenu = (router, store) => {
+  if (store.state.adminMenus.length > 0) {
+    return
+  }
+  axios.get('/menu').then(resp => {
+    if (resp && resp.status === 200) {
+      var fmtRoutes = formatRoutes(resp.data)
+      // 暂时取消动态获取路由
+      // router.addRoutes(fmtRoutes)
+      // console.info(fmtRoutes)
+      store.commit('initAdminMenu', fmtRoutes)
+    }
+  })
+}
 
 router.beforeEach((to, from, next) => {
-  // console.info('拦截器进入')
-  // console.info(window.localStorage.getItem('user'))
-  // console.info(to.meta.requireAuth)
+  if (store.state.user.username && to.path.startsWith('/admin')) {
+    initAdminMenu(router, store)
+  }
+  // 已登录状态下访问 login 页面直接跳转到后台首页
+  if (store.state.username && to.path.startsWith('/login')) {
+    next({
+      path: 'admin/dashboard'
+    })
+  }
   if (to.meta.requireAuth) {
     if (store.state.user.username) {
       axios.get('/authentication').then(resp => {
-        if (resp) {
-          next()
-        }else{
-          window.lo
-          next({
-            path: 'login',
-            query: {redirect: to.fullPath}
-          })
-        }
+        if (resp) next()
       })
     } else {
       next({

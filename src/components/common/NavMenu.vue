@@ -34,6 +34,9 @@ export default {
       this.$axios.get('/logout').then(resp => {
         if (resp.data.code === 200) {
           // 前后端状态保持一致
+          console.info('logout:'+resp.data.code)
+          //清除重置vue实例上所有变量，包括清除路由，防止动态获取路由时重复添加
+          location.reload();
           _this.$store.commit('logout')
           _this.$router.replace('/login')
         }
