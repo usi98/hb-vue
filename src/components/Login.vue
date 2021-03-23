@@ -3,6 +3,7 @@
   <el-form class="login-container" label-position="left"
            label-width="0px">
     <h3 class="login_title">系统登录</h3>
+    <p style="color: red">{{msg}}</p>
     <el-form-item>
       <el-input type="text" v-model="loginForm.username"
                 auto-complete="off" placeholder="账号"></el-input>
@@ -30,24 +31,27 @@ export default {
         username: '',
         password: ''
       },
-      responseResult: []
+      responseResult: [],
+      msg: ''
     }
   },
   methods: {
     login () {
       var _this = this
-      console.log(this.$store.state)
       this.$axios
           .post('/login', {
             username: this.loginForm.username,
             password: this.loginForm.password
           })
           .then(successResponse => {
+            console.info(successResponse.data)
             if (successResponse.data.code === 200) {
               // var data = this.loginForm
               _this.$store.commit('login', _this.loginForm)
               var path = this.$route.query.redirect
               this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
+            }else {
+              this.msg='账号或密码错误'
             }
           })
           .catch(failResponse => {

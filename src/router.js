@@ -9,6 +9,13 @@ import LibraryIndex from "@/components/library/LibraryIndex";
 import Register from "@/components/Register";
 Vue.use(Router)
 
+// todo 不知道什么意思，为了解决路由跳转到后台报错问题
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location, onResolve, onReject) {
+  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+  return originalPush.call(this, location).catch(err => err)
+}
+
 export default new Router({
   mode: 'history',
     routes: [
@@ -30,28 +37,39 @@ export default new Router({
           {
             path: '/index',
             name: 'AppIndex',
-            component: AppIndex,
-            meta: {
-              requireAuth: true
-            }
+            component: AppIndex
           },
           {
             path: '/library',
             name: 'Library',
-            component: LibraryIndex,
+            component: LibraryIndex
+          }
+        ]
+      },
+      {
+        path: '/admin',
+        name: 'AdminIndex',
+        // redirect: '/admin/roleConfig',
+        component: ()=> import('./components/admin/AdminIndex'),
+        meta: {
+          requireAuth: true
+        },
+        children: [
+          {
+            path: '/admin/roleConfig',
+            name: 'RoleConfig',
+            component: () => import('./components/admin/user/RoleConfig'),
             meta: {
               requireAuth: true
-            }
+            },
           },
-
           {
-            path: '/admin',
-            name: 'AdminIndex',
-            component: ()=> import('./components/admin/AdminIndex'),
-            children: [
-
-            ]
-
+            path: '/admin/surplus',
+            name: 'Surplus',
+            component: () => import('./components/admin/search/Surplus'),
+            meta: {
+              requireAuth: true
+            },
           }
         ]
       }
