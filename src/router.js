@@ -50,28 +50,37 @@ export default new Router({
         path: '/admin',
         name: 'AdminIndex',
         // redirect: '/admin/roleConfig',
-        component: ()=> import('./components/admin/AdminIndex'),
+        component: () => import('./components/admin/AdminIndex'),
         meta: {
           requireAuth: true
-        },
-        children: [
-          {
-            path: '/admin/roleConfig',
-            name: 'RoleConfig',
-            component: () => import('./components/admin/user/RoleConfig'),
-            meta: {
-              requireAuth: true
-            },
-          },
-          {
-            path: '/admin/surplus',
-            name: 'Surplus',
-            component: () => import('./components/admin/search/Surplus'),
-            meta: {
-              requireAuth: true
-            },
-          }
-        ]
+        }
       }
+      // {
+      //   path: '/admin',
+      //   name: 'AdminIndex',
+      //   // redirect: '/admin/roleConfig',
+      //   component: ()=> import('./components/admin/AdminIndex'),
+      //   meta: {
+      //     requireAuth: true
+      //   },
+      //   children: [
+      //     {
+      //       path: '/admin/roleConfig',
+      //       name: 'RoleConfig',
+      //       component: () => import('./components/admin/user/RoleConfig'),
+      //       meta: {
+      //         requireAuth: true
+      //       },
+      //     },
+      //     {
+      //       path: '/admin/surplus',
+      //       name: 'Surplus',
+      //       component: () => import('./components/admin/search/Surplus'),
+      //       meta: {
+      //         requireAuth: true
+      //       },
+      //     }
+      //   ]
+      // }
     ]
 })

@@ -15,6 +15,7 @@ export default new Vuex.Store({
             state.adminMenus = menus
         },
         login (state, user) {
+
             state.user = user
             window.localStorage.setItem('user', JSON.stringify(user))
         },

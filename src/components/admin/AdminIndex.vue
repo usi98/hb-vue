@@ -24,7 +24,8 @@ export default {
   components: {AdminMenu, Header},
   data () {
     return {
-      dialogVisible: false
+      dialogVisible: false,
+      isAdmin: this.$store.user
     }
   },
   mounted () {

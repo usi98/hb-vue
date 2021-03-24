@@ -12,6 +12,10 @@
       <el-input type="password" v-model="loginForm.password"
                 auto-complete="off" placeholder="密码"></el-input>
     </el-form-item>
+    <el-form-item>
+      <el-radio v-model="radio" label="1">学生</el-radio>
+      <el-radio v-model="radio" label="2">管理员</el-radio>
+    </el-form-item>
     <el-form-item style="width: 100%">
       <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="login">登录</el-button>
     </el-form-item>
@@ -32,20 +36,31 @@ export default {
         password: ''
       },
       responseResult: [],
-      msg: ''
+      msg: '',
+      radio: '1'
     }
   },
   methods: {
     login () {
       var _this = this
+      if(_this.radio === '1'){
+        console.info('student')
+      }else{
+        console.info('admin')
+      }
+
       this.$axios
           .post('/login', {
             username: this.loginForm.username,
-            password: this.loginForm.password
+            password: this.loginForm.password,
+            isAdmin: false
           })
           .then(successResponse => {
             console.info(successResponse.data)
             if (successResponse.data.code === 200) {
+
+
+
               // var data = this.loginForm
               _this.$store.commit('login', _this.loginForm)
               var path = this.$route.query.redirect
@@ -57,6 +72,7 @@ export default {
           .catch(failResponse => {
             console.error(failResponse)
           })
+
     }
   }
 }

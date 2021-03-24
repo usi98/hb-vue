@@ -15,7 +15,7 @@ Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
-/*
+
 const formatRoutes = (routes) => {
   let fmtRoutes = []
   routes.forEach(route => {
@@ -50,19 +50,23 @@ const initAdminMenu = (router, store) => {
       store.commit('initAdminMenu', fmtRoutes)
     }
   })
-}*/
+}
 
 router.beforeEach((to, from, next) => {
-  // todo 取消动态加载路由
-/*  if (store.state.user.username && to.path.startsWith('/admin')) {
-    initAdminMenu(router, store)
-  }*/
-  // 已登录状态下访问 login 页面直接跳转到后台首页
-  // if (store.state.username && to.path.startsWith('/login')) {
-  //   next({
-  //     path: 'admin/dashboard'
-  //   })
-  // }
+  // todo 动态加载路由
+  if (store.state.user.username && to.path.startsWith('/admin')) {
+    if(store.state.adminMenus.length === 0){
+      console.log('length:'+store.state.adminMenus.length)
+      initAdminMenu(router, store)
+    }
+
+  }
+
+  if (store.state.username && to.path.startsWith('/login')) {
+    next({
+      path: 'admin/dashboard'
+    })
+  }
   if (to.meta.requireAuth) {
     if (store.state.user.username) {
       axios.get('/authentication').then(resp => {
