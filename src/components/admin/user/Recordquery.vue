@@ -1,12 +1,10 @@
 <template>
-  <h3>
-    AdminIndex
-  </h3>
+  <h3>Recordquery</h3>
 </template>
 
 <script>
 export default {
-  name: "UserBasic"
+  name: "Recordquery"
 }
 </script>
 

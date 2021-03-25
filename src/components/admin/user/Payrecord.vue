@@ -1,12 +1,10 @@
 <template>
-  <h3>
-    RoleConfig
-  </h3>
+  <h3>Payrecord</h3>
 </template>
 
 <script>
 export default {
-  name: "RoleConfig"
+  name: "Payrecord"
 }
 </script>
 

@@ -4,7 +4,7 @@
 <!--    面包屑-->
     <el-card style="margin-bottom: 10px">
       <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{ path: '/admin/roleConfig' }">管理中心</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/admin/' }">管理中心</el-breadcrumb-item>
         <el-breadcrumb-item>查询检索</el-breadcrumb-item>
         <el-breadcrumb-item>用户剩余电量查询</el-breadcrumb-item>
       </el-breadcrumb>
@@ -61,14 +61,14 @@
           align='center'
           label="学生信息">
         <el-table
-            :data="students"
+            :data="users"
             class="table-in-table"
             :show-header="true"
             border
             row-key="id"
             style="width: 100%">
           <el-table-column
-              prop="sno"
+              prop="username"
               label="学号">
           </el-table-column>
           <el-table-column
@@ -112,7 +112,7 @@ export default {
       value: '',
       room: '',
       tableData: [],
-      students: []
+      users: []
     }
   },
   methods: {
@@ -125,9 +125,9 @@ export default {
           })
           .then(successResponse => {
             _this.tableData=successResponse.data
-            _this.students=_this.tableData[0].students
+            _this.users=_this.tableData[0].users
             // let resdata=JSON.parse(JSON.stringify(successResponse.data));
-            console.log("运行记录组件接到的数据",_this.tableData[0].students);
+            console.log("运行记录组件接到的数据",_this.tableData[0].users);
 
           })
           .catch(failResponse => {

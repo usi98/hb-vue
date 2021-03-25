@@ -2,7 +2,7 @@
 
   <el-menu mode="horizontal">
 
-    <span style="font-size: 32px;font-weight: bold;">白  卷</span>
+    <span style="margin: 10px;font-size: 32px;font-weight: bold;">后台管理</span>
     <i class="el-icon-switch-button" v-on:click="logout" style="float:right;font-size: 40px;color: #222;padding: 10px"></i>
   </el-menu>
 

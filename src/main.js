@@ -46,7 +46,6 @@ const initAdminMenu = (router, store) => {
       var fmtRoutes = formatRoutes(resp.data)
       // 暂时取消动态获取路由
       router.addRoutes(fmtRoutes)
-      console.info('fmtRoutes'+fmtRoutes)
       store.commit('initAdminMenu', fmtRoutes)
     }
   })
