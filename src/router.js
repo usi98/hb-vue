@@ -43,7 +43,17 @@ export default new Router({
             path: '/library',
             name: 'Library',
             component: LibraryIndex
-          }
+          },
+          {
+            path: '/article',
+            name: 'Article',
+            component: () => import('./components/article/Articles')
+          },
+          {
+            path: '/article/articles',
+            name: 'Article',
+            component: () => import('./components/article/ArticleDetails')
+          },
         ]
       },
       {
@@ -51,6 +61,15 @@ export default new Router({
         name: 'AdminIndex',
         // redirect: '/admin/roleConfig',
         component: () => import('./components/admin/AdminIndex'),
+        meta: {
+          requireAuth: true
+        }
+      },
+      {
+        path: '/admin/content/editor',
+        name: 'ArticleEditor',
+        // redirect: '/admin/roleConfig',
+        component: () => import('./components/admin/content/ArticleEditor'),
         meta: {
           requireAuth: true
         }

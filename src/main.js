@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 
 // 设置反向代理，前端请求默认发送到 http://localhost:8443/api
 var axios = require('axios')
@@ -15,6 +17,7 @@ Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
+Vue.use(mavonEditor)
 
 const formatRoutes = (routes) => {
   let fmtRoutes = []
