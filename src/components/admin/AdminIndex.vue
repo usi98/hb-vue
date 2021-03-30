@@ -5,7 +5,7 @@
       <Header></Header>
     </el-header>
     <el-container>
-      <el-aside>
+      <el-aside style="background: #545c64">
         <admin-menu></admin-menu>
       </el-aside>
       <el-main style="background: #F2F6FC" >

@@ -56,7 +56,16 @@
           label="剩余电量"
           width="180">
       </el-table-column>
-
+      <el-table-column
+          prop="price"
+          label="电价"
+          width="180">
+      </el-table-column>
+      <el-table-column
+          prop="powerMax"
+          label="最大功率"
+          width="180">
+      </el-table-column>
       <el-table-column
           align='center'
           label="学生信息">

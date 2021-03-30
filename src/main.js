@@ -40,6 +40,7 @@ const formatRoutes = (routes) => {
   })
   return fmtRoutes
 }
+
 const initAdminMenu = (router, store) => {
   if (store.state.adminMenus.length > 0) {
     return
@@ -47,7 +48,7 @@ const initAdminMenu = (router, store) => {
   axios.get('/menu').then(resp => {
     if (resp && resp.status === 200) {
       var fmtRoutes = formatRoutes(resp.data)
-      // 暂时取消动态获取路由
+
       router.addRoutes(fmtRoutes)
       store.commit('initAdminMenu', fmtRoutes)
     }
@@ -58,10 +59,8 @@ router.beforeEach((to, from, next) => {
   // todo 动态加载路由
   if (store.state.user.username && to.path.startsWith('/admin')) {
     if(store.state.adminMenus.length === 0){
-      console.log('length:'+store.state.adminMenus.length)
       initAdminMenu(router, store)
     }
-
   }
 
   if (store.state.username && to.path.startsWith('/login')) {
@@ -69,6 +68,7 @@ router.beforeEach((to, from, next) => {
       path: 'admin/dashboard'
     })
   }
+
   if (to.meta.requireAuth) {
     if (store.state.user.username) {
       axios.get('/authentication').then(resp => {
