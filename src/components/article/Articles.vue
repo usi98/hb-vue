@@ -15,15 +15,18 @@
             fit="cover"></el-image>
           <el-divider></el-divider>
         </div>
+        <el-card>
+
+          <el-pagination
+              background
+              layout="total, prev, pager, next, jumper"
+              @current-change="handleCurrentChange"
+              :page-size="pageSize"
+              :total="total">
+          </el-pagination>
+        </el-card>
       </el-card>
     </div>
-    <el-pagination
-      background
-      layout="total, prev, pager, next, jumper"
-      @current-change="handleCurrentChange"
-      :page-size="pageSize"
-      :total="total">
-    </el-pagination>
   </div>
 </template>
 

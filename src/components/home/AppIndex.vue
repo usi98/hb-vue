@@ -1,29 +1,58 @@
 <template>
-  <div style="margin-top: 40px">
-    <side-menu id="side-menu"></side-menu>
-    <div class="home">
-      <div id="header-div">
-        <div style="height: 150px"></div>
-        <carousel></carousel>
-        <quick-nav style="float: right;margin-top: -450px;margin-right: 480px"></quick-nav>
-      </div>
-      <update-card id="update-card"></update-card>
-      <slogan id="slogan"></slogan>
-      <about id="about"></about>
-    </div>
+  <div style="width: 1300px;margin:0 auto">
+
+
+    <el-tabs :tab-position="tabPosition" >
+      <el-tab-pane label="用户管理">
+        <div style="background-color: #cac6c6">
+          <br>
+          用户管理
+          <br>
+          用户管理
+          <br>
+          用户管理
+          <br>
+          用户管理
+          <br>
+          用户管理
+          <br>
+          用户管理          <br>
+          用户管理          <br>
+          用户管理          <br>
+          用户管理          <br>
+          用户管理          <br>
+          用户管理          <br>
+          用户管理          <br>
+          用户管理
+          <br>
+          用户管理 <br>
+          用户管理 <br>
+          用户管理
+          <br><br>
+          <br><br><br><br>
+        </div>
+
+      </el-tab-pane>
+      <el-tab-pane label="配置管理">配置管理</el-tab-pane>
+      <el-tab-pane label="角色管理">角色管理</el-tab-pane>
+      <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
+    </el-tabs>
+<!--    <side-menu id="side-menu"></side-menu>-->
+
   </div>
 </template>
 
 <script>
-import Carousel from './Carousel'
-import QuickNav from './QuickNav'
-import Slogan from './Slogan'
-import About from '@/components/common/About'
-import UpdateCard from './UpdateCard'
-import SideMenu from './SideMenu'
+
+// import SideMenu from './SideMenu'
 export default {
   name: 'AppIndex',
-  components: {Carousel, QuickNav, Slogan, About, UpdateCard, SideMenu}
+  // components: { SideMenu
+  data() {
+    return{
+      tabPosition: 'left'
+    }
+  }
 }
 </script>
 

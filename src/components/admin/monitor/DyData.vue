@@ -1,5 +1,5 @@
 <template>
-  <div id="container" style="width: 600px;height: 400px;"></div>
+  <div id="container" style="width: 1000px;height: 400px;"></div>
 </template>
 
 <script>
@@ -11,9 +11,19 @@ export default {
       v: 0
     }
   },
+  props: {
+    buildingId: {
+      type: Number,
+
+    },
+    roomId: {
+      type: Number,
+      default: 101
+    }
+  },
   methods:{
     valuey() {
-      this.$axios.get('/rand').then(resp =>{
+      this.$axios.get('/rand/'+this.buildingId+'/'+this.roomId).then(resp =>{
         this.v =  resp.data
       })
     },
@@ -51,7 +61,7 @@ export default {
       let myChart = this.$echarts.init(document.getElementById("container"));//自己加的代码
       let option = { //加个let
         title: {
-          text: "动态数据 + 时间坐标轴"
+          text: "用电功率监控"
         },
         tooltip: {
           trigger: "axis",
@@ -81,6 +91,8 @@ export default {
           }
         },
         yAxis: {
+          max: 1000,
+          min: 0,
           type: "value",
           boundaryGap: [0, "100%"],
           splitLine: {
@@ -130,6 +142,24 @@ export default {
       }
     }
 
+  },
+  computed: {
+    address() {
+      const {buildingId,roomId} = this
+      return {buildingId,roomId}
+    }
+  },
+  watch: {
+    address: {
+      handler: function (/*newval, oldval*/) {
+        console.info('重新开始')
+        clearInterval(this.timer)
+        this.timer = null
+        this.v=0
+        this.random_Data()
+      },
+      deep: true
+    }
   },
   created() {
 

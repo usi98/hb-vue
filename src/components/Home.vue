@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <NavMenu></NavMenu>
-    <router-view/>
-  </div>
+    <el-container >
+      <el-header>
+        <NavMenu></NavMenu>
+      </el-header>
+      <el-main>
+        <router-view/>
+      </el-main>
+      <el-footer style="background-color: #cac6c6">
+        Footer</el-footer>
+    </el-container>
 </template>
 
 <script>

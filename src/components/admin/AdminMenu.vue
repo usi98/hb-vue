@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-menu
-        style="min-height:1000px"
+        style="min-height:950px"
         :default-active="'/admin/users'"
         class="el-menu-admin"
         router

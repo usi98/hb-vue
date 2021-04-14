@@ -53,17 +53,17 @@
       </el-table-column>
       <el-table-column
           prop="surplus"
-          label="剩余电量"
+          label="剩余电量(kW·h)"
           width="180">
       </el-table-column>
       <el-table-column
           prop="price"
-          label="电价"
+          label="电价(分/kW·h)"
           width="180">
       </el-table-column>
       <el-table-column
           prop="powerMax"
-          label="最大功率"
+          label="最大功率(W)"
           width="180">
       </el-table-column>
       <el-table-column
@@ -140,6 +140,7 @@ export default {
 
           })
           .catch(failResponse => {
+            alert("输入正确宿舍号！")
             console.error(failResponse)
           })
     }
