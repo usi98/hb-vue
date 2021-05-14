@@ -9,7 +9,9 @@
       </el-breadcrumb>
     </el-card>
 
-    <h2>违规记录</h2>
+    <h2>电价设置</h2>
+
+    取消此功能
 
     <el-row>
       楼号：

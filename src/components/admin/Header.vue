@@ -19,7 +19,7 @@ export default {
         if (resp && resp.data.code === 200) {
 
           _this.$store.commit('logout')
-          _this.$router.replace('/index')
+          _this.$router.replace('/article')
           location.reload()
         }
       }).catch(failResponse => {

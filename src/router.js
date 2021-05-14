@@ -22,8 +22,8 @@ export default new Router({
       {
         path: '/',
         name: 'Default',
-        redirect: '/index',
-        component: AppIndex
+        redirect: '/article',
+        component: () => import('./components/article/ArticleDetails')
       },
       {
         path: '/login', name: 'Login', component: Login

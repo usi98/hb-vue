@@ -2,7 +2,7 @@
   <div>
     <el-menu
         style="min-height:950px"
-        :default-active="'/admin/users'"
+        :default-active="$route.path"
         class="el-menu-admin"
         router
         mode="vertical"

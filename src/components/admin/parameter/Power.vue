@@ -37,7 +37,7 @@
       </el-row>
     </el-form>
     <el-table
-        height="500"
+        height=""
         :data="tableData"
         style="width: 100%">
       <el-table-column
@@ -53,6 +53,11 @@
       <el-table-column
           prop="roomId"
           label="房间号">
+      </el-table-column>
+
+      <el-table-column
+          prop="meterAddress"
+          label="电表通讯地址">
       </el-table-column>
       <el-table-column
           prop="stime"
@@ -102,7 +107,7 @@ export default {
     return {
       //表格初始化信息
       tableData: [],
-      pageSize: 10,
+      pageSize: 8,
       total: 1,
 
       isDisabled: true,

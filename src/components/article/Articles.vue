@@ -1,7 +1,11 @@
 <template>
   <div style="margin-top: 40px">
+
     <!--<el-button @click="addArticle()">添加文章</el-button>-->
     <div class="articles-area">
+      <h1 style="text-align: center">
+        海滨用电管理系统公告
+      </h1>
       <el-card style="text-align: left">
         <div v-for="article in articles" :key="article.id">
           <div style="float:left;width:85%;height: 150px;">

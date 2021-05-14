@@ -58,13 +58,21 @@ export default {
           .then(successResponse => {
             console.info(successResponse.data)
             if (successResponse.data.code === 200) {
-
-
-
               // var data = this.loginForm
               _this.$store.commit('login', _this.loginForm)
               var path = this.$route.query.redirect
-              this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
+
+              if(_this.radio === '1'){
+                //如果选1就跳转到用户信息界面
+                this.$router.replace({path: path === '/' || path === undefined ? '/index' : '/admin/user/userInfo'})
+                //this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
+              }else{
+                //如果不选1就跳转到管理员信息监控界面
+                this.$router.replace({path: path === '/' || path === undefined ? '/index' : '/admin/monitor/dashboard'})
+                //this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
+              }
+
+
             }else {
               this.msg='账号或密码错误'
             }
@@ -72,7 +80,6 @@ export default {
           .catch(failResponse => {
             console.error(failResponse)
           })
-
     }
   }
 }
@@ -80,9 +87,9 @@ export default {
 
 <style>
 #poster {
-  background:url("../assets/eva.jpg") no-repeat;
+  background:url("../assets/bg.jpg") no-repeat;
   background-position: center;
-  height: 100%;
+  height: 105%;
   width: 100%;
   background-size: cover;
   position: fixed;

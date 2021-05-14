@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import ElementUI from 'element-ui'
 import * as echarts from 'echarts';
+import moment from 'moment'
 import 'element-ui/lib/theme-chalk/index.css'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
@@ -22,6 +23,7 @@ Vue.prototype.$echarts = echarts
 
 Vue.use(ElementUI)
 Vue.use(mavonEditor)
+Vue.prototype.$moment = moment
 
 const formatRoutes = (routes) => {
   let fmtRoutes = []

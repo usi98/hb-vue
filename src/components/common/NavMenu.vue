@@ -67,7 +67,7 @@ export default {
   data () {
     return {
       navList: [
-        {name: '/index', navItem: '首页'},
+        // {name: '/index', navItem: '首页'},
         {name: '/article', navItem: '公告'},
         {name: '/admin', navItem: '个人中心'}
       ]

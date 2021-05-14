@@ -52,7 +52,7 @@ export default {
           xAxis: [
             {
               type: 'category',
-              data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+              data: ['2020/10', '2020/11', '2020/12', '2021/1', '2021/2', '2021/3', '2021/4'],
               axisTick: {
                 alignWithLabel: true
               }
@@ -65,10 +65,10 @@ export default {
           ],
           series: [
             {
-              name: '直接访问',
+              name: '用电量',
               type: 'bar',
               barWidth: '60%',
-              data: [10, 52, 200, 334, 390, 330, 220]
+              data: [18.7, 20.5, 19.2, 17.4, 18.8, 16.9, 17.2]
             }
           ]
         };

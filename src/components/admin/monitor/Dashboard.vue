@@ -22,6 +22,10 @@
         <Chart :id="'chart'" v-bind:height="'400px'" v-bind:width="'300px'" style="margin: 0 auto">  <div id="chart" ></div> </Chart>
       </el-card>
     </el-col>
+
+    <el-card shadow="hover">
+      <Sector></Sector>
+    </el-card>
   </el-row>
 
 </div>
@@ -30,9 +34,10 @@
 <script>
 import DyData from "./DyData";
 import Chart from "./Chart";
+import Sector from "./Sector";
 export default {
   name: "Dashboard",
-  components: {DyData,Chart},
+  components: {DyData,Chart,Sector},
   data() {
     return{
       bid: 1,

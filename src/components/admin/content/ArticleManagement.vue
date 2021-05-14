@@ -12,7 +12,7 @@
     </el-row>
 
     <el-link href="/admin/content/editor" :underline="false" target="_blank" class="add-link">
-      <el-button type="success" style="margin-left: 20px">写文章</el-button>
+      <el-button type="success" style="margin-left: 20px">新增公告</el-button>
     </el-link>
     <el-card style="margin: 18px 2%;width: 95%">
       <el-table

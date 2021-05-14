@@ -29,6 +29,52 @@
           @change="handleChange"></el-cascader>
     </el-row>
 
+
+    <el-table
+        :data="tableData"
+        style="width: 100%">
+      <el-table-column
+          label="日期"
+          width="240">
+        <template slot-scope="scope">
+          <i class="el-icon-time"></i>
+          <span style="margin-left: 10px">{{ scope.row.updatetime }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+          label="学号"
+          width="180">
+        <template slot-scope="scope">
+          <div slot="reference" class="name-wrapper">
+            <el-tag size="danger">{{ scope.row.sno }}</el-tag>
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column
+          prop="buildingId"
+          label="楼号">
+      </el-table-column>
+      <el-table-column
+          prop="roomId"
+          label="房间号">
+      </el-table-column>
+      <el-table-column label="内容描述">
+        <template slot-scope="scope">
+          {{scope.row.description}}
+        </template>
+      </el-table-column>
+    </el-table>
+
+    <div style="margin: 20px 0 50px 0">
+      <el-pagination
+          background
+          style="float:left;"
+          layout="total, prev, pager, next, jumper"
+          @current-change="handleCurrentChange"
+          :page-size="pageSize"
+          :total="total">
+      </el-pagination>
+    </div>
   </div>
 
 </template>
@@ -59,15 +105,27 @@ export default {
       }],
       value: '',
       value1: '',
-
       options1: [],
 
+      pageSize: 15,
+      tableData: [],
+      total: 0
     }
   },
   methods:{
     handleChange(value) {
       console.log(value);
     },
+    loadInfo(){
+      var _this = this
+      this.$axios.get('/loadViolationLog/' + this.pageSize + '/1').then(resp => {
+        if (resp && resp.status === 200) {
+          //console.info('data:{}',JSON.stringify(resp))
+          _this.tableData = resp.data.result.content
+          _this.total = resp.data.result.totalElements
+        }
+      })
+    }
   },
   created() {
     var _this = this
@@ -77,6 +135,9 @@ export default {
     }).catch(fil=>{
       console.info(fil)
     })
+  },
+  mounted(){
+    this.loadInfo();
   }
 }
 </script>
