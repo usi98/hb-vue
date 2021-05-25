@@ -23,7 +23,7 @@ export default {
   },
   methods:{
     valuey() {
-      this.$axios.get('/rand/'+this.buildingId+'/'+this.roomId).then(resp =>{
+      this.$axios.get('/getpowerInfo/'+this.buildingId+'/'+this.roomId).then(resp =>{
         this.v =  resp.data
       })
     },
@@ -49,6 +49,25 @@ export default {
           ]
         }
       }
+      function randomNullData() {
+        now = new Date(+now + oneDay);
+        // value = value + Math.random() * 21 - 10;
+        // value = _this.valuey()
+        // console.info('value:'+value)
+        temp = ([now.getFullYear(), now.getMonth() + 1, now.getDate()].join("/"))+''
+        temp = ([now.getFullYear(), now.getMonth() + 1, now.getDate()].join("/"))+' '+([now.getHours(), now.getMinutes() + 1, now.getSeconds()].join(":"))+''
+
+
+        return {
+          name: temp,
+          value: [
+            // [now.getFullYear(), now.getMonth() + 1, now.getDate()].join("/"),
+            temp,
+            _this.v
+          ]
+        }
+      }
+
       var temp = ''
       var data = [];
       // var now = +new Date(1997, 9, 3);
@@ -56,7 +75,7 @@ export default {
       var oneDay =   1000;
       // var value = Math.random() * 1000;
       for (var i = 0; i < 60; i++) {
-        data.push(randomData());
+        data.push(randomNullData());
       }
       let myChart = this.$echarts.init(document.getElementById("container"));//自己加的代码
       let option = { //加个let
@@ -101,7 +120,7 @@ export default {
         },
         series: [
           {
-            name: "模拟数据",
+            name: "瞬时有功功率（w/h）",
             type: "line",
             showSymbol: false,
             hoverAnimation: false,
@@ -130,15 +149,15 @@ export default {
         data.shift();
         data.push(randomData());
         myChart.setOption(option);
-      }, 1000);
+      }, 3000);
     },
 
     setTimer() {
       if(this.timer == null) {
         this.timer = setInterval( () => {
-          console.log('开始定时...每过一秒执行一次')
-          this.str+=1
-        }, 1000)
+          console.log('开始定时...每过3秒执行一次')
+          this.str+=3
+        }, 3000)
       }
     }
 
@@ -162,7 +181,6 @@ export default {
     }
   },
   created() {
-
     // 每次进入界面时，先清除之前的所有定时器，然后启动新的定时器
     console.info('开始')
     clearInterval(this.timer)

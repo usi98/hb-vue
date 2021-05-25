@@ -37,7 +37,6 @@
       </el-row>
     </el-form>
     <el-table
-        height=""
         :data="tableData"
         style="width: 100%">
       <el-table-column
@@ -59,14 +58,7 @@
           prop="meterAddress"
           label="电表通讯地址">
       </el-table-column>
-      <el-table-column
-          prop="stime"
-          label="供电开始时间">
-      </el-table-column>
-      <el-table-column
-          prop="etime"
-          label="供电结束时间">
-      </el-table-column>
+
       <el-table-column
           prop="powerMax"
           label="最大功率（W）">

@@ -10,7 +10,7 @@
 
   </el-card>
   <h3>
-    信息管理
+    账号信息
   </h3>
 
   <el-card class="box-card">

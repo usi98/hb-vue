@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <article-editor></article-editor>
   </div>
 </template>

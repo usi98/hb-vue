@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top: 40px">
+  <div style="margin-top: 40px;">
 
     <!--<el-button @click="addArticle()">添加文章</el-button>-->
     <div class="articles-area">

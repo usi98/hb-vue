@@ -3,7 +3,7 @@
       <el-header>
         <NavMenu></NavMenu>
       </el-header>
-      <el-main>
+      <el-main style="background-color: #F2F6FC">
         <router-view/>
       </el-main>
 

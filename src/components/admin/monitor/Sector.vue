@@ -1,23 +1,41 @@
 <template>
 <!--饼图-->
-  <div id="sector" style="width: 480px;height: 400px;"></div>
+  <div>
+    {{ups}} {{offs}}
+    <div id="sector" style="width: 480px;height: 400px;"></div>
+  </div>
+
 
 </template>
 
 <script>
 export default {
   name: "Sector",
-  data(){
+  data() {
     return{
-      v1: 10,
-      v2: 20,
-      v3: 30,
-      v4: 40
+      ups: 10,
+      offs: 15,
     }
   },
   methods: {
+    loadinfo() {
+      var _this = this
+      this.$axios.get('/circular').then(resp => {
+        if (resp && resp.status === 200) {
+          _this.ups = parseInt(resp.data.result.ups)
+          _this.offs = parseInt(resp.data.result.offs)
+          _this.loadData()
+        }
+      }).catch(failResonse => {
+        _this.$message({
+          message: '数据加载失败'+failResonse,
+          type: 'error'
+        });
+      })
+
+    },
     loadData(){
-      let _this = this
+      var _this = this
       let myChart = this.$echarts.init(document.getElementById("sector"));//自己加的代码
       let option = { //加个let
         tooltip: {
@@ -53,10 +71,8 @@ export default {
               show: false
             },
             data: [
-              {value: _this.v1, name: '正常运行'},
-              {value: _this.v1, name: '跳闸'},
-              {value: _this.v2, name: '欠费'},
-              {value: _this.v3, name: '运行异常'},
+              {value: _this.offs, name: '已断电'},
+              {value: _this.ups, name: '已通电'}
             ]
           }
         ]
@@ -66,7 +82,8 @@ export default {
     }
   },
   mounted() {
-    this.loadData();
+   // this.loadData();
+    this.loadinfo()
   },
 }
 </script>

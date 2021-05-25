@@ -132,7 +132,7 @@
 
       <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+    <el-button type="primary" @click="editSubmit">确 定</el-button>
   </span>
     </el-dialog>
   </div>
@@ -220,8 +220,25 @@ export default {
 
     },
     editSubmit() {
+      var _this = this
+      this.$axios
+          .post('/updateUserInfo', {
+            id: _this.info.id,
+            bid: _this.info.bid,
+            rid: _this.info.rid,
+            username: _this.info.username,
+            name: _this.info.name
+          })
+          .then(successResponse => {
+            if (successResponse.data.code === 200){
+              console.info()
+            }
+          })
+          .catch(failResponse => {
+            console.error(failResponse)
+          })
 
-
+      this.dialogVisible = false
     },
     del(id) {
       this.$confirm('此操作将永久删除，是否继续？','提示',{

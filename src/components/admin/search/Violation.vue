@@ -11,7 +11,7 @@
 
     <h2>违规记录</h2>
 
-    <el-row>
+<!--    <el-row>
       楼号：
       <el-select v-model="value" placeholder="请选择楼号">
         <el-option
@@ -27,7 +27,7 @@
           v-model="value1"
           :options="options1"
           @change="handleChange"></el-cascader>
-    </el-row>
+    </el-row>-->
 
 
     <el-table
@@ -70,7 +70,7 @@
           background
           style="float:left;"
           layout="total, prev, pager, next, jumper"
-          @current-change="handleCurrentChange"
+          @current-change="handleChange"
           :page-size="pageSize"
           :total="total">
       </el-pagination>

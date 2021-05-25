@@ -11,7 +11,7 @@
 
     <h2>操作记录</h2>
 
-    <el-row>
+<!--    <el-row>
       楼号：
       <el-select v-model="value" placeholder="请选择楼号">
         <el-option
@@ -27,7 +27,7 @@
           v-model="value1"
           :options="options1"
           @change="handleChange"></el-cascader>
-    </el-row>
+    </el-row>-->
 
     <el-table
         :data="tableData"
@@ -68,7 +68,7 @@
           background
           style="float:left;"
           layout="total, prev, pager, next, jumper"
-          @current-change="handleCurrentChange"
+          @current-change="handleChange"
           :page-size="pageSize"
           :total="total">
       </el-pagination>
@@ -105,7 +105,7 @@ export default {
 
       options1: [],
 
-      pageSize: 15,
+      pageSize: 10,
       tableData: [],
       total: 0
     }
@@ -113,6 +113,14 @@ export default {
   methods:{
     handleChange(value) {
       console.log(value);
+      var _this = this
+      this.$axios.get('/loadOperateLog/' + this.pageSize + '/'+value).then(resp => {
+        if (resp && resp.status === 200) {
+          //console.info('data:{}',JSON.stringify(resp))
+          _this.tableData = resp.data.result.content
+          _this.total = resp.data.result.totalElements
+        }
+      })
     },
     loadInfo(){
       var _this = this

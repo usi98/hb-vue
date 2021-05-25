@@ -106,12 +106,9 @@ export default {
       var _this = this
       this.$axios.get('/article/' + this.pageSize + '/1').then(resp => {
         if (resp && resp.status === 200) {
-          console.info('data:{}',JSON.stringify(resp))
-
+          // console.info('data:{}',JSON.stringify(resp))
           _this.articles = resp.data.result.content
-          console.info(_this.articles)
           _this.total = resp.data.result.totalElements
-          console.info(resp.data.result.totalElements)
         }
       })
     },
